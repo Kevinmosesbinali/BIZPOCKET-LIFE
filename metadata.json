@@ -1,0 +1,6 @@
+{
+  "name": "BizPocket Lite",
+  "description": "Small business management system for Malawian business owners to manage sales, expenses, inventory, and profits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

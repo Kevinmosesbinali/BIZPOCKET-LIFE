@@ -1,0 +1,48 @@
+databases:
+  - name: bizpocket-db
+    plan: free
+    databaseName: bizpocket
+    user: bizpocket_user
+
+services:
+  - type: web
+    name: bizpocket-lite
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build && npm run db:push
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SQL_SSL
+        value: "true"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SQL_HOST
+        fromDatabase:
+          name: bizpocket-db
+          property: host
+      - key: SQL_PORT
+        fromDatabase:
+          name: bizpocket-db
+          property: port
+      - key: SQL_DB_NAME
+        fromDatabase:
+          name: bizpocket-db
+          property: database
+      - key: SQL_USER
+        fromDatabase:
+          name: bizpocket-db
+          property: user
+      - key: SQL_PASSWORD
+        fromDatabase:
+          name: bizpocket-db
+          property: password
+      - key: SQL_ADMIN_USER
+        fromDatabase:
+          name: bizpocket-db
+          property: user
+      - key: SQL_ADMIN_PASSWORD
+        fromDatabase:
+          name: bizpocket-db
+          property: password
